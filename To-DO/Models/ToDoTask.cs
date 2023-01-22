@@ -7,7 +7,7 @@ namespace To_DO.Models
     {
         [Key]
         public int TaskId { get; set; }
-
+        [Required]
         public string TaskName { get; set; }
         public string Description { get; set; }
 
@@ -15,6 +15,7 @@ namespace To_DO.Models
         public int UserId { get; set; }       
         public User User { get; set; }
 
+        [Required]
         public DateTime TaskDate { get; set; }
 
         public bool IsDone { get; set; }
