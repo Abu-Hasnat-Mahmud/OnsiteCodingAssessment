@@ -1,5 +1,5 @@
 ﻿
-int[] nums=new int[100];
+int[] nums = new int[100];
 int val;
 
 Console.Write("Input nums array value: ");
@@ -9,12 +9,14 @@ nums = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), Convert.ToInt32);
 Console.Write("Input val: ");
 val = Convert.ToInt32(Console.ReadLine());
 
-var count = 0;
-for (var i = 0; i < nums.Length; i++)
+var count = -1;
+for (var i = 0; i < nums.Length - 1; i++)
 {
-    if (nums[i] != val)
+    if (nums[i] == val)
     {
-        nums[i] = nums[i+1];
+        int temp = nums[i + 1];
+        nums[i] = temp;
+        nums[i + 1] = val;
         count++;
     }
 }
