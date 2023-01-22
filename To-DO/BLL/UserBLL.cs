@@ -3,7 +3,7 @@ using To_DO.Repository;
 
 namespace To_DO.BLL
 {
-    public class UserBLL
+    public class UserBLL : IUserBLL
     {
         private readonly IUserRepository _userRepository;
 
@@ -14,28 +14,30 @@ namespace To_DO.BLL
 
         public async Task Add(User user)
         {
-            if (! await _userRepository.IsUserExist(user))
+            if (!await _userRepository.IsUserExist(user))
             {
-                bool checkSpace = ! user.UserName.Contains(' ');
+                bool checkSpace = !user.UserName.Contains(' ');
                 bool checkLength = user.UserName.Length > 4;
-                bool age18 = Years(user.DateOfBirth , DateTime.UtcNow) >= 18;
+                bool age18 = Years(user.DateOfBirth, DateTime.UtcNow) >= 18;
 
                 if (checkSpace && checkLength && age18)
                 {
                     await _userRepository.Add(user);
-                }               
+                }
             }
-            
+
         }
 
-        public async Task Update(User user)
+        public async Task<User> Update(User user)
         {
-            var preUser =await _userRepository.Get(user.UserId);
+            var preUser = await _userRepository.Get(user.UserId);
 
             preUser.FirstName = user.FirstName;
             preUser.LastName = user.LastName;
 
             await _userRepository.Update(preUser);
+
+            return preUser;
         }
 
         int Years(DateTime start, DateTime end)

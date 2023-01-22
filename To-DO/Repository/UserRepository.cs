@@ -4,7 +4,7 @@ using To_DO.Models;
 
 namespace To_DO.Repository
 {
-    public class UserRepository : IUserRepository, IUserRepository1
+    public class UserRepository : IUserRepository
     {
         private readonly DBContext _dbContext;
 
@@ -26,19 +26,15 @@ namespace To_DO.Repository
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task Get(int userId)
+        public async Task<User> Get(int userId)
         {
-           await _dbContext.User.FindAsync(userId);           
+           return await _dbContext.User.FindAsync(userId);           
         }
 
         public async Task<bool> IsUserExist(User user)
         {
             return await _dbContext.User.AnyAsync(a => a.UserName == user.UserName || a.Email == user.Email);
         }
-
-
-
-
 
     }
 }

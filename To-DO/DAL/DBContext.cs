@@ -10,6 +10,7 @@ namespace To_DO.DAL
 
         public DbSet<User> User { get; set; }
         public DbSet<ToDoTask> ToDoTask { get; set; }
+        public DbSet<ToDoItem> ToDoItem { get; set; }
        
     }
 }

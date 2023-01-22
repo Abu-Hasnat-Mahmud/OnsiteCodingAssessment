@@ -18,6 +18,7 @@ namespace To_DO.Models
         [Required]
         public DateTime TaskDate { get; set; }
 
-        public bool IsDone { get; set; }
+        public virtual List<ToDoItem> ToDoItems { get; set; }
+
     }
 }
