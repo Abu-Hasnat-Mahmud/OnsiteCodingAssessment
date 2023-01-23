@@ -19,8 +19,8 @@ for (var i = 0; i < nums.Length - 1; i++)
         {
             count++;
         }
+        nums[i + 1] = nums[i];
         nums[i] = temp;
-        nums[i + 1] = val;
        
     }
 }
