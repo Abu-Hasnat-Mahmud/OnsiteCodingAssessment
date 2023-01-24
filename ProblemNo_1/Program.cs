@@ -10,19 +10,23 @@ Console.Write("Input val: ");
 val = Convert.ToInt32(Console.ReadLine());
 
 var count = 0;
-for (var i = 0; i < nums.Length - 1; i++)
+for (var i = 0; i < nums.Length; i++)
 {
-    if (nums[i] == val)
+    if (nums[i] != val)
     {
-        int temp = nums[i + 1];
-        if (temp!=val)
+        count++;
+        for (int j = 0; j < i; j++)
         {
-            count++;
+            if (nums[j] == val)
+            {                
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+
+            }
         }
-        nums[i + 1] = nums[i];
-        nums[i] = temp;
-       
     }
+
 }
 
 Console.WriteLine(count);
